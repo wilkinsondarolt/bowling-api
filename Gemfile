@@ -22,3 +22,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
 end
+
+group :test do
+  gem 'factory_bot_rails', '~> 6.2.0'
+end
