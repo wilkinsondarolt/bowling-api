@@ -1,0 +1,7 @@
+en:
+  dry_validation:
+    errors:
+      key?: is not informed
+      int?: is not an integer
+      lteq?: is greater than 10
+      gteq?: is lesser than 0

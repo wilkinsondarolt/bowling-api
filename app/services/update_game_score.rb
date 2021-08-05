@@ -9,8 +9,9 @@ class UpdateGameScore
     game_score = 0
 
     game.frames.each do |frame|
-      game_score += frame_score(frame)
+      break if unstarted_frame?(frame)
 
+      game_score += frame_score(frame)
       frame.score = game_score
       frame.save
     end
@@ -20,6 +21,10 @@ class UpdateGameScore
   end
 
   private
+
+  def unstarted_frame?(frame)
+    frame.first_delivery.blank?
+  end
 
   def frame_score(frame)
     score = [frame.first_delivery, frame.second_delivery, frame.third_delivery].compact.reduce(:+) || 0
