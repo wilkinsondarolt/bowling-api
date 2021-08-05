@@ -12,7 +12,7 @@ RSpec.describe 'Games', type: :request do
       end
 
       it 'returns the created game information' do
-        game = create(:game)
+        game = create(:game, :with_frames)
 
         get game_path(game)
 
