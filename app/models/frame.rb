@@ -10,9 +10,18 @@ class Frame < ApplicationRecord
 
   def next_delivery
     return :none if finished?
-    return :second if first_delivery.present? && second_delivery.blank?
-    return :third if first_delivery.present? && second_delivery.present?
 
-    :first
+    deliveries = [first_delivery, second_delivery, third_delivery].compact
+
+    case deliveries.size
+    when 0 then :first
+    when 1 then :second
+    when 2 then :third
+    else :none
+    end
+  end
+
+  def last_frame?
+    number == 10
   end
 end
