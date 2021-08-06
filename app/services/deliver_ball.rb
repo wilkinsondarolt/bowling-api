@@ -9,7 +9,7 @@ class DeliverBall
   end
 
   def call
-    raise FinishedGame if game.finished?
+    raise FinishedGame, I18n.t('errors.game.finished') if game.finished?
 
     frame = game.current_frame
     knock_down_pins(frame, knocked_pins)

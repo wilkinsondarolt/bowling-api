@@ -167,7 +167,7 @@ RSpec.describe 'Games', type: :request do
 
           expect(response.parsed_body).to match(
             {
-              'errors' => ['']
+              'errors' => ['Game finished.']
             }
           )
         end

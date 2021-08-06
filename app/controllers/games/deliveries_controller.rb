@@ -1,8 +1,8 @@
 module Games
   class DeliveriesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: -> { head :not_found }
-    rescue_from DeliverBall::FinishedGame do
-      render(json: ErrorSerializer.render(''), status: :unprocessable_entity)
+    rescue_from DeliverBall::FinishedGame do |error|
+      render(json: ErrorSerializer.render(error.message), status: :unprocessable_entity)
     end
 
     def create
