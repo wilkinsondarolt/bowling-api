@@ -9,24 +9,11 @@ class CheckCurrentFrameCompletion
     return if game.finished?
 
     frame = game.current_frame
-    frame.strike! if strike?(frame)
-    frame.spare! if spare?(frame)
     frame.finished! if finished_frame?(frame)
     frame.save
   end
 
   private
-
-  def strike?(frame)
-    frame.first_delivery == 10
-  end
-
-  def spare?(frame)
-    return false if frame.strike?
-
-    total_knocked_pins = [frame.first_delivery, frame.second_delivery].compact.reduce(:+)
-    total_knocked_pins == 10
-  end
 
   def finished_frame?(frame)
     strike_or_spare = frame.strike? || frame.spare?

@@ -13,10 +13,23 @@ class DeliverBall
 
     frame = game.current_frame
     knock_down_pins(frame, knocked_pins)
+    frame.strike! if strike?(frame)
+    frame.spare! if spare?(frame)
     frame.save
   end
 
   private
+
+  def strike?(frame)
+    frame.first_delivery == 10
+  end
+
+  def spare?(frame)
+    return false if frame.strike?
+
+    total_knocked_pins = [frame.first_delivery, frame.second_delivery].compact.reduce(:+)
+    total_knocked_pins == 10
+  end
 
   def knock_down_pins(frame, knocked_pins)
     case frame.next_delivery
