@@ -12,7 +12,7 @@ module Games
         game = Game.find(contract_result[:game_id])
 
         DeliverBall.new(game: game, knocked_pins: contract_result[:knocked_pins]).call
-        CheckCurrentFrameCompletion.new(game).call
+        CheckGameCompletion.new(game).call
         UpdateGameScore.new(game).call
 
         render(json: GamesSerializer.render(game), status: :ok)
